@@ -14,6 +14,8 @@ const TASKS = [
   },
 ];
 
+// TASKS are passed into the TaskList component
+// TaskList component is wrapped in a div element
 const App = () => {
   return (
     <div className="App">

@@ -2,9 +2,12 @@ import PropTypes from 'prop-types';
 import Task from './Task.jsx';
 import './TaskList.css';
 
-const TaskList = ({ tasks }) => {
-  const getTaskListJSX = (tasks) => {
-    return tasks.map((task) => {
+// 
+const TaskList = ({ tasks }) => { 
+  const getTaskListJSX = (tasks) => { 
+    // get array of JSX items
+    // iterates over each task in tasks; passes into 
+    return tasks.map((task) => { 
       return (
         <Task
           key={task.id}
