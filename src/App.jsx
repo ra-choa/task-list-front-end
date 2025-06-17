@@ -30,7 +30,7 @@ const App = () => {
     console.log('updated states', tasks);
   };
     // function to delete all task data
-  const deleteTasks = () => {
+  const deleteAllTasks = () => {
     setTaskData([]);
   };
 
@@ -40,11 +40,12 @@ const App = () => {
         <h1>Ada&apos;s Task List</h1>
       </header>
       <main>
-        <button className="delete__all__tasks button" onClick={() => deleteTasks()}>
-          Click HERE to Delete All Tasks!</button>
-        <div>{<TaskList
-          tasks={taskData}
-          onClickCompleteToggle={toggleComplete}/>}</div>
+        <div>
+          <TaskList
+            tasks={taskData}
+            onClickCompleteToggle={toggleComplete}
+            onClickDeleteAll={deleteAllTasks}/>
+        </div>
       </main>
     </div>
   );

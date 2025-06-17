@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import Task from './Task.jsx';
-import './TaskList.css';
+import PropTypes from "prop-types";
+import Task from "./Task.jsx";
+import "./TaskList.css";
 
 const TaskList = (props) => {
   const getTaskListJSX = () => {
@@ -16,7 +16,17 @@ const TaskList = (props) => {
       );
     });
   };
-  return <ul className="tasks__list no-bullet">{getTaskListJSX()}</ul>;
+  return (
+    <>
+      <button
+        className='delete__all__tasks button'
+        onClick={props.onClickDeleteAll}
+      >
+        Click HERE to Delete All Tasks!
+      </button>
+      <ul className='tasks__list no-bullet'>{getTaskListJSX()}</ul>
+    </>
+  );
 };
 
 TaskList.propTypes = {
@@ -27,7 +37,8 @@ TaskList.propTypes = {
       isComplete: PropTypes.bool.isRequired,
     })
   ).isRequired,
-  onClickCompleteToggle: PropTypes.func
+  onClickCompleteToggle: PropTypes.func,
+  onClickDeleteAll: PropTypes.func.isRequired,
 };
 
 export default TaskList;
