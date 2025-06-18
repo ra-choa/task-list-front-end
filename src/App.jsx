@@ -34,6 +34,11 @@ const App = () => {
     setTaskData([]);
   };
 
+  const deleteTaskById = (taskId) => {
+    const remainingTasks = taskData.filter(task => task.id !== taskId);
+    setTaskData(remainingTasks);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -44,7 +49,8 @@ const App = () => {
           <TaskList
             tasks={taskData}
             onClickCompleteToggle={toggleComplete}
-            onClickDeleteAll={deleteAllTasks}/>
+            onClickDeleteAll={deleteAllTasks}
+            onClickDeleteTask={deleteTaskById}/>
         </div>
       </main>
     </div>
