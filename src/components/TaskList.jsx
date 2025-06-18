@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import Task from "./Task.jsx";
-import "./TaskList.css";
+import PropTypes from 'prop-types';
+import Task from './Task.jsx';
+import './TaskList.css';
 
 const TaskList = (props) => {
   const getTaskListJSX = () => {
