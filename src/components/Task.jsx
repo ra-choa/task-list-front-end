@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
-
 import './Task.css';
 
 const Task = ({ id, title, isComplete, onClickCompleteToggle, onClickDeleteTask }) => {
   const markComplete = () => {
-    onClickCompleteToggle(id);
+    onClickCompleteToggle(id, isComplete);
   };
 
   const deleteTask = () => {

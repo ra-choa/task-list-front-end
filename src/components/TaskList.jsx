@@ -19,12 +19,6 @@ const TaskList = (props) => {
   };
   return (
     <>
-      <button
-        className='delete__all__tasks button'
-        onClick={props.onClickDeleteAll}
-      >
-        Click HERE to Delete All Tasks!
-      </button>
       <ul className='tasks__list no-bullet'>{getTaskListJSX()}</ul>
     </>
   );
@@ -39,7 +33,6 @@ TaskList.propTypes = {
     })
   ).isRequired,
   onClickCompleteToggle: PropTypes.func,
-  onClickDeleteAll: PropTypes.func.isRequired,
   onClickDeleteTask: PropTypes.func.isRequired,
 };
 
