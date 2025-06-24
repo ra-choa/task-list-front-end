@@ -4,7 +4,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const baseUrl = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 const getTaskListApi = () => {
   return axios.get(`${baseUrl}/tasks`)
@@ -30,28 +30,11 @@ const postTaskApi = (taskData) => {
 };
 
 const convertFromApi = (task) => {
-  // destructure task and create variables
-  // use variables to create a new Task object
-  const { id, title, completedAt = null } = task; // should still be okay if completedAt isn't there (optional field)
+  const { id, title, completedAt = null } = task;
   const isComplete = completedAt !== null;
   const newTask = { id, title, completedAt, isComplete };
   return newTask;
 };
-
-// need to add a method for getting/removing tasks fro the db?
-
-// const TASKS = [
-//   {
-//     id: 1,
-//     title: 'Mow the lawn',
-//     isComplete: false,
-//   },
-//   {
-//     id: 2,
-//     title: 'Cook Pasta',
-//     isComplete: true,
-//   },
-// ];
 
 const App = () => {
   const [taskData, setTaskData] = useState([]);
@@ -66,24 +49,12 @@ const App = () => {
     getAllTasks();
   }, []);
 
-  // const toggleComplete = (taskId) => {
-  //   const tasks = taskData.map(task => {
-  //     if (task.id === taskId) {
-  //       return { ...task, isComplete: !task.isComplete };
-  //     } else {
-  //       return task;
-  //     }
-  //   });
-  //   setTaskData(tasks);
-  //   console.log('updated states', tasks);
-  // };
   const toggleComplete = (taskId, isComplete) => {
     const endpoint = isComplete
       ? `${baseUrl}/tasks/${taskId}/mark_incomplete`
       : `${baseUrl}/tasks/${taskId}/mark_complete`;
 
     axios.patch(endpoint)
-      // .then(() => getAllTasks())
       .then(() => {
         setTaskData(prevTasks =>
           prevTasks.map(task =>
@@ -94,14 +65,8 @@ const App = () => {
       .catch(error => console.log(error));
   };
 
-  // const deleteTaskById = (taskId) => {
-  //   const remainingTasks = taskData.filter(task => task.id !== taskId);
-  //   setTaskData(remainingTasks);
-  // };
-
   const deleteTaskById = (taskId) => {
     axios.delete(`${baseUrl}/tasks/${taskId}`)
-      // .then(() => getAllTasks())
       .then(() => {
         setTaskData(prevTasks =>
           prevTasks.filter(task => task.id !== taskId)

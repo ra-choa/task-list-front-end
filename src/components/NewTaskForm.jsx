@@ -20,7 +20,7 @@ const NewTaskForm = ({onPostNewTask}) => {
     const { name, value } = event.target;
 
     setFormData(prevData => ({
-      ...prevData, 
+      ...prevData,
       [name]: value
     }));
   };
