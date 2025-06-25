@@ -11,7 +11,6 @@ const NewTaskForm = ({onPostNewTask}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     onPostNewTask(formData);
     setFormData(kDefaultFormState);
   };

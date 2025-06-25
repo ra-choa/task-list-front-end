@@ -19,12 +19,12 @@ const getTaskListApi = () => {
 const postTaskApi = (taskData) => {
   return axios.post(`${baseUrl}/tasks`, taskData)
     .then (response => {
-      const newTask = response.data;
+      const newTask = response.data.task;
+      const completedAt = newTask.completed_at || null; //need to define it ahead of time to use it for isComplete
       return {
         id: newTask.id,
         title: newTask.title,
-        completedAt: newTask.completed_at || null,
-        isComplete: newTask.completed_at !==null
+        isComplete: completedAt !==null
       };
     });
 };
@@ -78,6 +78,7 @@ const App = () => {
   const postNewTask = (newTaskData) => {
     postTaskApi(newTaskData)
       .then(newTask => {
+        console.log('New task added:', newTask);
         setTaskData(prevTasks => [newTask, ...prevTasks]);
       })
       .catch(error => console.log(error));
